@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact – Renzo Gracie Altitude BJJ</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <img src="img/Altitude logo.jpeg" alt="Renzo Gracie Altitude logo" class="nav-logo">
+      <span class="brand-text">
+        <span class="brand-main">Renzo Gracie Altitude</span>
+        <span class="brand-sub">Brazilian Jiu Jitsu</span>
+      </span>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="programs.html">Programs</a>
+      <a href="schedule.html">Schedule</a>
+      <a href="coaches.html">Professors</a>
+      <a href="social.html">Social</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="nav-active">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="section">
+  <div class="section-header">
+    <h1>Contact & Visit</h1>
+    <p>Questions about classes, memberships, or your 5-class free trial? Reach out.</p>
+  </div>
+
+  <div class="contact-grid">
+    <div>
+      <h3>Academy Info</h3>
+      <p>
+        Renzo Gracie Altitude Brazilian Jiu Jitsu<br>
+        Northern Colorado
+      </p>
+      <p>
+        <strong>Email:</strong> info@AltitudeBJJ.com<br>
+        <strong>Phone:</strong> (555) 555-5555
+      </p>
+    </div>
+
+    <div>
+      <h3>Free Trial / Questions</h3>
+      <p>Use the form below to ask about classes, trial options, or dropping in.</p>
+      <form>
+        <div style="margin-bottom: 8px;">
+          <input type="text" name="name" placeholder="Name" style="width:100%;padding:8px;border-radius:8px;border:1px solid var(--border-subtle);background:var(--surface-soft);color:var(--text-main);">
+        </div>
+        <div style="margin-bottom: 8px;">
+          <input type="email" name="email" placeholder="Email" style="width:100%;padding:8px;border-radius:8px;border:1px solid var(--border-subtle);background:var(--surface-soft);color:var(--text-main);">
+        </div>
+        <div style="margin-bottom: 8px;">
+          <textarea name="message" placeholder="How can we help?" rows="4" style="width:100%;padding:8px;border-radius:8px;border:1px solid var(--border-subtle);background:var(--surface-soft);color:var(--text-main);"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <p>© <span id="year"></span> Renzo Gracie Altitude Brazilian Jiu Jitsu</p>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
