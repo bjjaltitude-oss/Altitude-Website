@@ -17,6 +17,11 @@
         <span class="brand-sub">Brazilian Jiu Jitsu</span>
       </span>
     </a>
+
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+
     <nav class="nav-links">
       <a href="index.html">Home</a>
       <a href="programs.html">Programs</a>
@@ -36,7 +41,6 @@
   </div>
 
   <div class="coach-grid">
-    <!-- Professor 1 -->
     <article class="coach-card">
       <div class="coach-photo">
         <img src="img/coach-1.jpeg" alt="Professor 1">
@@ -54,7 +58,6 @@
       </div>
     </article>
 
-    <!-- Professor 2 -->
     <article class="coach-card">
       <div class="coach-photo">
         <img src="img/coach-2.jpeg" alt="Professor 2">
@@ -72,7 +75,6 @@
       </div>
     </article>
 
-    <!-- Coach (kept as Coach) -->
     <article class="coach-card">
       <div class="coach-photo">
         <img src="img/coach-3.jpeg" alt="Kids coach">
@@ -97,7 +99,25 @@
 </footer>
 
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
+  const yearEl = document.getElementById('year');
+  if (yearEl) {
+    yearEl.textContent = new Date().getFullYear();
+  }
+
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  if (navToggle) {
+    navToggle.addEventListener('click', () => {
+      document.body.classList.toggle('nav-open');
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        document.body.classList.remove('nav-open');
+      });
+    });
+  }
 </script>
 </body>
 </html>

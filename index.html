@@ -17,6 +17,11 @@
         <span class="brand-sub">Brazilian Jiu Jitsu</span>
       </span>
     </a>
+
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+
     <nav class="nav-links">
       <a href="index.html" class="nav-active">Home</a>
       <a href="programs.html">Programs</a>
@@ -63,14 +68,26 @@
   </div>
 
   <div class="home-photo-row">
-    <div class="home-photo">
-      <img src="img/team-photo-1.jpeg" alt="Team photo">
-    </div>
-    <div class="home-photo">
-      <img src="img/rolling-photo-2.jpeg" alt="Rolling training">
-    </div>
-    <div class="home-photo">
-      <img src="img/class-photo-3.jpeg" alt="Class instruction">
+    <div class="home-photo-track">
+      <div class="home-photo">
+        <img src="img/team-photo-1.jpeg" alt="Team photo">
+      </div>
+      <div class="home-photo">
+        <img src="img/rolling-photo-2.jpeg" alt="Rolling training">
+      </div>
+      <div class="home-photo">
+        <img src="img/class-photo-3.jpeg" alt="Class instruction">
+      </div>
+
+      <div class="home-photo">
+        <img src="img/team-photo-1.jpeg" alt="Team photo">
+      </div>
+      <div class="home-photo">
+        <img src="img/rolling-photo-2.jpeg" alt="Rolling training">
+      </div>
+      <div class="home-photo">
+        <img src="img/class-photo-3.jpeg" alt="Class instruction">
+      </div>
     </div>
   </div>
 </section>
@@ -116,7 +133,25 @@
 </footer>
 
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
+  const yearEl = document.getElementById('year');
+  if (yearEl) {
+    yearEl.textContent = new Date().getFullYear();
+  }
+
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  if (navToggle) {
+    navToggle.addEventListener('click', () => {
+      document.body.classList.toggle('nav-open');
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        document.body.classList.remove('nav-open');
+      });
+    });
+  }
 </script>
 </body>
 </html>

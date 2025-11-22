@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Social & Media – Renzo Gracie Altitude BJJ</title>
+  <title>Social &amp; Media – Renzo Gracie Altitude BJJ</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -17,6 +17,11 @@
         <span class="brand-sub">Brazilian Jiu Jitsu</span>
       </span>
     </a>
+
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+
     <nav class="nav-links">
       <a href="index.html">Home</a>
       <a href="programs.html">Programs</a>
@@ -31,7 +36,7 @@
 
 <section class="section">
   <div class="section-header">
-    <h1>Social & Media</h1>
+    <h1>Social &amp; Media</h1>
     <p>Follow the training, promotions, and day-to-day life at Renzo Gracie Altitude.</p>
   </div>
 
@@ -53,7 +58,7 @@
     </article>
 
     <article class="social-card">
-      <h2>Contact & Reviews</h2>
+      <h2>Contact &amp; Reviews</h2>
       <p>Check out reviews or send us a message if you have questions before your first class.</p>
       <a class="btn btn-ghost" href="contact.html">
         Contact the Academy
@@ -67,7 +72,25 @@
 </footer>
 
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
+  const yearEl = document.getElementById('year');
+  if (yearEl) {
+    yearEl.textContent = new Date().getFullYear();
+  }
+
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  if (navToggle) {
+    navToggle.addEventListener('click', () => {
+      document.body.classList.toggle('nav-open');
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        document.body.classList.remove('nav-open');
+      });
+    });
+  }
 </script>
 </body>
 </html>
