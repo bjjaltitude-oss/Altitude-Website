@@ -116,10 +116,11 @@ a {
   border-bottom-color: var(--accent);
 }
 
-/* mobile nav toggle */
+/* mobile nav toggle – jiu jitsu belt icon */
 
 .nav-toggle {
-  display: none; /* shown only on small screens */
+  display: none; /* enabled on small screens via media query */
+  position: relative;
   width: 34px;
   height: 34px;
   border-radius: 50%;
@@ -129,32 +130,73 @@ a {
   justify-content: center;
   padding: 0;
   cursor: pointer;
+  overflow: hidden;
+  animation: beltPulse 3s ease-in-out infinite;
 }
 
+/* we’re not using the original 3 spans visually */
 .nav-toggle span {
-  display: block;
-  width: 16px;
-  height: 2px;
+  display: none;
+}
+
+/* main belt strap */
+.nav-toggle::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 3px;
   background: var(--text-main);
   border-radius: 999px;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transform: translateY(-2px);
+  box-shadow:
+    -10px 0 0 var(--text-main),  /* left tail */
+    10px 0 0 var(--text-main);   /* right tail */
 }
 
-.nav-toggle span + span {
-  margin-top: 3px;
+/* knot in the center of the belt */
+.nav-toggle::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 8px;
+  border-radius: 3px;
+  border: 2px solid var(--text-main);
+  border-top-width: 0;
+  transform: translateY(6px);
 }
 
-/* when menu open, animate icon */
+/* subtle breathing/pulse when menu is closed */
+@keyframes beltPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(245,245,245,0.0);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(245,245,245,0.08);
+    transform: scale(1.04);
+  }
+}
 
-body.nav-open .nav-toggle span:nth-child(1) {
-  transform: translateY(5px) rotate(45deg);
+/* when menu is open: belt “ties” into an X and pulse stops */
+
+body.nav-open .nav-toggle {
+  animation: none;
 }
-body.nav-open .nav-toggle span:nth-child(2) {
-  opacity: 0;
+
+body.nav-open .nav-toggle::before {
+  box-shadow: none;
+  width: 20px;
+  transform: rotate(45deg);
 }
-body.nav-open .nav-toggle span:nth-child(3) {
-  transform: translateY(-5px) rotate(-45deg);
+
+body.nav-open .nav-toggle::after {
+  border-width: 0;
+  width: 20px;
+  height: 3px;
+  background: var(--text-main);
+  transform: rotate(-45deg);
 }
+
 
 /* HERO */
 
@@ -652,17 +694,19 @@ body.nav-open .nav-toggle span:nth-child(3) {
   }
 
   .hero-visual {
-    margin-top: 12px;
+    margin-top: 12px; /* brings emblem slightly higher on mobile */
   }
 
   .nav-inner {
     align-items: center;
   }
 
+  /* show belt button on mobile */
   .nav-toggle {
     display: inline-flex;
   }
 
+  /* dropdown menu with slide-down animation */
   .nav-links {
     position: absolute;
     top: 60px;
@@ -674,12 +718,24 @@ body.nav-open .nav-toggle span:nth-child(3) {
     padding: 10px 14px;
     flex-direction: column;
     gap: 10px;
-    min-width: 180px;
-    display: none;
+    min-width: 190px;
+
+    opacity: 0;
+    transform: translateY(-8px);
+    max-height: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transition:
+      opacity 0.18s ease-out,
+      transform 0.18s ease-out,
+      max-height 0.22s ease-out;
   }
 
   body.nav-open .nav-links {
-    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 420px;
+    pointer-events: auto;
   }
 
   .home-photo {
@@ -691,7 +747,6 @@ body.nav-open .nav-toggle span:nth-child(3) {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
 @media (max-width: 520px) {
   .section {
     padding: 32px 14px;
