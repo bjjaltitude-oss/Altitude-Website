@@ -116,7 +116,7 @@ a {
   border-bottom-color: var(--accent);
 }
 
-/* mobile nav toggle – jiu jitsu belt icon */
+/* mobile nav toggle – mountain icon based on logo */
 
 .nav-toggle {
   display: none; /* enabled on small screens via media query */
@@ -131,42 +131,39 @@ a {
   padding: 0;
   cursor: pointer;
   overflow: hidden;
-  animation: beltPulse 3s ease-in-out infinite;
+  animation: mountainPulse 3s ease-in-out infinite;
 }
 
-/* we’re not using the original 3 spans visually */
+/* hide the original spans; we draw with pseudo-elements */
 .nav-toggle span {
   display: none;
 }
 
-/* main belt strap */
-.nav-toggle::before {
-  content: "";
-  position: absolute;
-  width: 20px;
-  height: 3px;
-  background: var(--text-main);
-  border-radius: 999px;
-  transform: translateY(-2px);
-  box-shadow:
-    -10px 0 0 var(--text-main),  /* left tail */
-    10px 0 0 var(--text-main);   /* right tail */
-}
-
-/* knot in the center of the belt */
+/* left slope of the mountain */
+.nav-toggle::before,
 .nav-toggle::after {
   content: "";
   position: absolute;
-  width: 10px;
-  height: 8px;
-  border-radius: 3px;
-  border: 2px solid var(--text-main);
-  border-top-width: 0;
-  transform: translateY(6px);
+  width: 18px;
+  height: 2px;
+  background: var(--text-main);
+  border-radius: 999px;
+  transition: transform 0.25s ease, opacity 0.25s ease, box-shadow 0.25s ease, width 0.25s ease;
 }
 
-/* subtle breathing/pulse when menu is closed */
-@keyframes beltPulse {
+/* left slope */
+.nav-toggle::before {
+  transform: translate(-4px, 4px) rotate(-32deg);
+  box-shadow: 0 -8px 0 rgba(245,245,245,0.16); /* subtle inner ridge */
+}
+
+/* right slope */
+.nav-toggle::after {
+  transform: translate(4px, 4px) rotate(32deg);
+}
+
+/* subtle pulse echo around the icon when closed */
+@keyframes mountainPulse {
   0%, 100% {
     box-shadow: 0 0 0 0 rgba(245,245,245,0.0);
     transform: scale(1);
@@ -177,7 +174,7 @@ a {
   }
 }
 
-/* when menu is open: belt “ties” into an X and pulse stops */
+/* when menu is open: lines cross into an X and pulse stops */
 
 body.nav-open .nav-toggle {
   animation: none;
@@ -190,10 +187,7 @@ body.nav-open .nav-toggle::before {
 }
 
 body.nav-open .nav-toggle::after {
-  border-width: 0;
   width: 20px;
-  height: 3px;
-  background: var(--text-main);
   transform: rotate(-45deg);
 }
 
